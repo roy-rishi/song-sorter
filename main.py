@@ -110,34 +110,42 @@ for t in artistTracks:
     trackRatings.append({"ranking":1000, "name":t})
 print(trackRatings)
 
-n = len(artistTracks)
-battleCount = 1
-for iterCount in range(4):
+def runBattles():
+    n = len(artistTracks)
+    battleCount = 1
+    print("\n\nStart Sorting Songs!")
+    print(f'"1": Song 1 Wins   "2": Song 2 Wins   "a": Abort')
+    for iterCount in range(4):
 
 
-    trackRatings.sort(key=getRating)
-    for i in range(0, n - 1, 2):
+        trackRatings.sort(key=getRating)
+        for i in range(0, n - 1, 2):
 
-        songName1 = trackRatings[i]["name"]
-        songName2 = trackRatings[i + 1]["name"]
-        winner = showOptions(songName1, songName2, battleCount)
+            songName1 = trackRatings[i]["name"]
+            songName2 = trackRatings[i + 1]["name"]
+            winner = showOptions(songName1, songName2, battleCount)
 
-        if winner == "1":
-            trackRatings[i]["ranking"] += 30.0 * (1.0 - probWin(trackRatings[i + 1]["ranking"], trackRatings[i]["ranking"]))
-            trackRatings[i + 1]["ranking"] += 30.0 * (0.0 - probWin(trackRatings[i]["ranking"], trackRatings[i + 1]["ranking"]))
-            print(trackRatings[i]["ranking"])
-            print(trackRatings[i + 1]["ranking"])
-        else:
-            trackRatings[i]["ranking"] += 30.0 * (0.0 - probWin(trackRatings[i + 1]["ranking"], trackRatings[i]["ranking"]))
-            trackRatings[i + 1]["ranking"] += 30.0 * (1.0 - probWin(trackRatings[i]["ranking"], trackRatings[i + 1]["ranking"]))
-            print(trackRatings[i]["ranking"])
-            print(trackRatings[i + 1]["ranking"])
+            if winner == "1":
+                trackRatings[i]["ranking"] += 30.0 * (1.0 - probWin(trackRatings[i + 1]["ranking"], trackRatings[i]["ranking"]))
+                trackRatings[i + 1]["ranking"] += 30.0 * (0.0 - probWin(trackRatings[i]["ranking"], trackRatings[i + 1]["ranking"]))
+                print(trackRatings[i]["ranking"])
+                print(trackRatings[i + 1]["ranking"])
+            if winner =="2":
+                trackRatings[i]["ranking"] += 30.0 * (0.0 - probWin(trackRatings[i + 1]["ranking"], trackRatings[i]["ranking"]))
+                trackRatings[i + 1]["ranking"] += 30.0 * (1.0 - probWin(trackRatings[i]["ranking"], trackRatings[i + 1]["ranking"]))
+                print(trackRatings[i]["ranking"])
+                print(trackRatings[i + 1]["ranking"])
+            if winner == "a":
+                print("aborting...")
+                return
 
 
-        battleCount += 1
+            battleCount += 1
 
-        random.shuffle(trackRatings)
-    # print(trackRatings)
+            random.shuffle(trackRatings)
+        # print(trackRatings)
+
+runBattles()
 
 trackRatings.sort(key=getRating)
 print(trackRatings)
