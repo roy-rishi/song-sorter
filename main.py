@@ -171,7 +171,7 @@ trackRatings.sort(key=getRating)
 # print(trackRatings)
 print("\n\nDetailed results are as follows\n")
 for i in range(len(trackRatings)):
-    print(f"{len(trackRatings) - i}.\t{getName(trackRatings[i])}\n\t\t{trackRatings[i]['album']}\n\t\t{getRating(trackRatings[i])}")
+    print(f"{len(trackRatings) - i}.\t{getName(trackRatings[i])}  -  {trackRatings[i]['album']}\n\t  {getRating(trackRatings[i])}")
 print("\n\nYour results are as follows\n")
 for i in range(len(trackRatings)):
     print(f"{len(trackRatings) - i}.\t{getName(trackRatings[i])}")
