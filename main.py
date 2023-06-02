@@ -16,27 +16,42 @@ print("\ngathering tracks from albums...\n")
 artistAlbumIds = []
 artistTracks = []
 
+def raiseNetworkError():
+    raise Exception("\033[91mERROR: Could not connect to Spotify. Device may be offline, or the network may be blocking this request")
+
 def getArtistTracks(artistUri, albumType):
     # print(albumType)
     if albumType == "album":
-        results = sp.artist_albums(artistUri, album_type=albumType)
+        try:
+            results = sp.artist_albums(artistUri, album_type=albumType)
+        except:
+            raiseNetworkError()
         # print(results["album_group"])
         albums = results['items']
         for album in albums:
             artistAlbumIds.append(album["uri"])
     elif albumType == "single":
-        results = sp.artist_albums(artistUri, album_type=albumType)
+        try:
+            results = sp.artist_albums(artistUri, album_type=albumType)
+        except:
+            raiseNetworkError()
         albums = results['items']
         for album in albums:
             # print(albumType, album["uri"])
             artistAlbumIds.append(album["uri"])
 
 def getAlbumTracks(albumUri):
-    albumInfo = sp.album(albumUri)
+    try:
+        albumInfo = sp.album(albumUri)
+    except:
+        raiseNetworkError()
     albumName = albumInfo["name"]
     print(albumName)
 
-    results = sp.album_tracks(album_id=albumUri)
+    try:
+        results = sp.album_tracks(album_id=albumUri)
+    except:
+        raiseNetworkError()
     albums = results['items']
     # print("\n\n", albums)
     while results['next']:
