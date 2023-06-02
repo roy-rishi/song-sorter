@@ -1,4 +1,7 @@
 # song-sorter
+Play a sorting game with your favorite artist!
+An artist's discography is gathered from an inputted artist URI or URL. This identifier can be located from the share dialog in the Spotify application.
+The ability to filter by playlist is provided.
  
 ## install
 ### dependencies
