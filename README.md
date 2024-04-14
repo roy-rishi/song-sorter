@@ -2,6 +2,9 @@
 Play a sorting game with your favorite artist!
 An artist's discography is gathered from an inputted artist URI or URL (as can be be located from the share dialog in the Spotify application).
 The ability to filter by playlist is provided.
+
+## april 2024 update
+This project is not being maintained. It has been replaced with newer project at [roy-rishi/sortify](https://github.com/roy-rishi/sortify) which has a stronger algorithm is web-based.
  
 ## install
 ### dependencies
